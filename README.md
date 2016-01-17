@@ -19,9 +19,9 @@ you like.
 
 Add `transform-h-jsx` as a plugin in your babel config.
 
-  {
-    "plugins": ["transform-h-jsx"]
-  }
+    {
+      "plugins": ["transform-h-jsx"]
+    }
 
 ## Options
 
@@ -31,32 +31,32 @@ Add `transform-h-jsx` as a plugin in your babel config.
 
 In your `webpack.config.js` file:
 
-  module.exports = {
-    output: {
-      path: __dirname + "/dist/js",
-      filename: "browser.js"
-    },
-    context: __dirname + "/src",
-    entry: "./browser",
-    devtool: 'cheap-source-map',
-    module: {
-      loaders: [
-        {
-          test: /\.jsx?$/,
-          include: __dirname + '/src',
-          loader: "babel-loader",
-          query: {
-            // cacheDirectory: __dirname + '/var/babel',
-            presets: ["es2015"],
-            plugins: [
-              ["transform-h-jsx"],
-              ["syntax-jsx"]
-            ]
+    module.exports = {
+      output: {
+        path: __dirname + "/dist/js",
+        filename: "browser.js"
+      },
+      context: __dirname + "/src",
+      entry: "./browser",
+      devtool: 'cheap-source-map',
+      module: {
+        loaders: [
+          {
+            test: /\.jsx?$/,
+            include: __dirname + '/src',
+            loader: "babel-loader",
+            query: {
+              // cacheDirectory: __dirname + '/var/babel',
+              presets: ["es2015"],
+              plugins: [
+                ["transform-h-jsx"],
+                ["syntax-jsx"]
+              ]
+            }
           }
-        }
-      ]
-    },
-    resolve: {
-      extensions: ['', '.js', '.coffee', '.jsx', '.json']
-    }
-  };
+        ]
+      },
+      resolve: {
+        extensions: ['', '.js', '.coffee', '.jsx', '.json']
+      }
+    };
