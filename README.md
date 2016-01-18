@@ -38,7 +38,6 @@ In your `webpack.config.js` file:
       },
       context: __dirname + "/src",
       entry: "./browser",
-      devtool: 'cheap-source-map',
       module: {
         loaders: [
           {
@@ -46,8 +45,6 @@ In your `webpack.config.js` file:
             include: __dirname + '/src',
             loader: "babel-loader",
             query: {
-              // cacheDirectory: __dirname + '/var/babel',
-              presets: ["es2015"],
               plugins: [
                 ["transform-h-jsx"],
                 ["syntax-jsx"]
@@ -57,6 +54,6 @@ In your `webpack.config.js` file:
         ]
       },
       resolve: {
-        extensions: ['', '.js', '.coffee', '.jsx', '.json']
+        extensions: ['', '.js', '.jsx', '.json']
       }
     };
