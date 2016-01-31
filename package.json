@@ -1,6 +1,6 @@
 {
   "name": "babel-plugin-transform-h-jsx",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Turns JSX into virtual-hyperscript",
   "repository": "git@github.com:jchook/babel-plugin-transform-h-jsx.git",
   "main": "dist/index.js",
@@ -85,7 +85,8 @@
   "dependencies": {
     "babel-plugin-syntax-jsx": "^6.3.13",
     "babel-runtime": "^5.0.0",
-    "babel-types": "^6.4.3"
+    "babel-types": "^6.4.3",
+    "esutils": "^2.0.2"
   },
   "devDependencies": {
     "babel": "5.8.21",

@@ -17,7 +17,11 @@ you like.
 
 ## Usage
 
-Add `transform-h-jsx` as a plugin in your babel config.
+You can run `babel` via command line:
+
+    babel --preset transform-h-jsx your-file.jsx
+
+Or add `transform-h-jsx` as a plugin in your babel config:
 
     {
       "plugins": ["transform-h-jsx"]
