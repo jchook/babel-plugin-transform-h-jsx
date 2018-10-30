@@ -163,6 +163,16 @@ export default function (opts) {
       );
     }
 
+    let attrsbs = []
+
+    attribs.properties.forEach(function (el) {
+      if (el.type == 'ObjectProperty') {
+        if (el.key.value !== undefined && el.key.value.substring(0, 5) === 'data-') {
+          attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), t.StringLiteral(el.value.value)))
+        }
+      }
+    })
+    attribs.properties.push(t.ObjectProperty(t.StringLiteral('dataset'), t.objectExpression(attrsbs)))
     return attribs;
   }
 }
