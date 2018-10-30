@@ -1,5 +1,5 @@
 {
-  "name": "sw-babel-plugin-transform-h-jsx",
+  "name": "babel-plugin-transform-h-jsx",
   "version": "1.2.0",
   "description": "Turns JSX into virtual-hyperscript",
   "repository": "git@github.com:jchook/babel-plugin-transform-h-jsx.git",
