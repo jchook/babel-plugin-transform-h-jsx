@@ -1,3 +1,7 @@
+## NOTE: This is a fork of `jchook/babel-plugin-transform-h-jsx`
+
+This version of the babel plugin allows `data-` attributes as well.
+
 # JSX to Virtual Hyperscript Babel Plugin
 
 Turns [JSX](https://facebook.github.io/react/docs/jsx-in-depth.html) into

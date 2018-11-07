@@ -168,7 +168,11 @@ export default function (opts) {
     attribs.properties.forEach(function (el) {
       if (el.type == 'ObjectProperty') {
         if (el.key.value !== undefined && el.key.value.substring(0, 5) === 'data-') {
-          attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), t.StringLiteral(el.value.value)))
+          if(el.key.value.slice(5) === 'value') {
+            attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), el.value.value))
+          } else {
+            attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), t.StringLiteral(el.value.value)))
+          }
         }
       }
     })
