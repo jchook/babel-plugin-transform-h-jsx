@@ -14,16 +14,14 @@ var _babelTypes = require("babel-types");
 
 var t = _interopRequireWildcard(_babelTypes);
 
-/*
-type ElementState = {
+/*:: type ElementState = {
   tagExpr: Object; // tag node
   tagName: string; // raw string tag name
   args: Array<Object>; // array of call arguments
   call?: Object; // optional call property that can be set to override the call expression returned
   pre?: Function; // function called with (state: ElementState) before building attribs
   post?: Function; // function called with (state: ElementState) after building attribs
-};
-*/
+};*/ // function called with (state: ElementState) after building attribs
 
 exports["default"] = function (opts) {
   var visitor = {};
@@ -36,6 +34,7 @@ exports["default"] = function (opts) {
     exit: function exit(path, file) {
       var callExpr = buildElementCall(path.get("openingElement"), file);
 
+      // This is the only change from react
       // callExpr.arguments.concat(path.node.children);
       callExpr.arguments.push(t.arrayExpression([].concat(path.node.children)));
 
@@ -102,7 +101,7 @@ exports["default"] = function (opts) {
       tagName = tagExpr.value;
     }
 
-    var state /* :ElementState */ = {
+    var state /*: ElementState*/ = {
       tagExpr: tagExpr,
       tagName: tagName,
       args: args
@@ -171,8 +170,27 @@ exports["default"] = function (opts) {
       attribs = t.callExpression(file.addHelper("extends"), objs);
     }
 
+    var attrsbs = [];
+
+    attribs.properties.forEach(function (el) {
+      if (el.type == 'ObjectProperty') {
+        if (el.key.value !== undefined && el.key.value.substring(0, 5) === 'data-') {
+          if (el.key.value.slice(5) === 'value') {
+            attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), el.value.value));
+          } else {
+            attrsbs.push(t.ObjectProperty(t.StringLiteral(el.key.value.slice(5)), t.StringLiteral(el.value.value)));
+          }
+        }
+      }
+    });
+    attribs.properties.push(t.ObjectProperty(t.StringLiteral('dataset'), t.objectExpression(attrsbs)));
     return attribs;
   }
 };
 
 module.exports = exports["default"];
+// tag node
+// raw string tag name
+// array of call arguments
+// optional call property that can be set to override the call expression returned
+// function called with (state: ElementState) before building attribs
